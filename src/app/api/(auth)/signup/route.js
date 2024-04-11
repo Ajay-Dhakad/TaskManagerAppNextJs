@@ -39,7 +39,7 @@ export const POST = async (request) => {
       );
     }
 
-    const token = await jwt.sign({ user: newuser }, process.env.JWT_SECRET, {
+    const token = await jwt.sign({ id: newuser._id }, process.env.JWT_SECRET, {
       expiresIn: "10d",
     });
 

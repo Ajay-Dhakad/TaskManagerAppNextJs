@@ -5,9 +5,9 @@ import jwt from "jsonwebtoken";
 import { DbConnection } from "@/DbConnection/DbConnection";
 
 export const POST = async (request) => {
-  await DbConnection();
-
   try {
+    await DbConnection();
+
     const { email, password } = await request.json();
 
     if (!email || !password) {
@@ -35,7 +35,7 @@ export const POST = async (request) => {
       );
     }
 
-    const token = jwt.sign({ user }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "10d",
     });
 
