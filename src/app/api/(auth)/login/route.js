@@ -1,8 +1,8 @@
-import { User } from "@/models/UserModel";
-import { NextRequest, NextResponse } from "next/server";
+import { User } from "../../../../models/UserModel";
+import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { DbConnection } from "@/DbConnection/DbConnection";
+import { DbConnection } from "../../../../DbConnection/DbConnection";
 
 export const POST = async (request) => {
   try {

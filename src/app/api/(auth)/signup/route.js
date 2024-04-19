@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { User } from "@/models/UserModel";
+import { User } from "../../../../models/UserModel";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import { DbConnection } from "@/DbConnection/DbConnection";
+import { DbConnection } from "../../../../DbConnection/DbConnection";
 
 export const POST = async (request) => {
   await DbConnection();

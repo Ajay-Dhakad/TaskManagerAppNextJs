@@ -1,4 +1,3 @@
-// import Image from "next/image";
 import Todoform from '../Components/Todoform';
 
 export default function Home() {

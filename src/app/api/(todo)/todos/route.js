@@ -1,9 +1,9 @@
-import { DbConnection } from '@/DbConnection/DbConnection';
-import { Todo } from "@/models/TodoModel";
-import { GetUserData } from "@/utils/GetUserData";
+import { DbConnection } from "../../../../DbConnection/DbConnection.js"
+import { Todo } from '../../../../models/TodoModel.js';
+import { GetUserData } from "../../../../utils/GetUserData.js";
 import { NextResponse } from "next/server";
 
-// export const dynamic='force-dynamic';
+export const dynamic='force-dynamic';
 
 export const GET = async(request) => {
 
@@ -95,4 +95,40 @@ catch(error){
     );
 }
 
+}
+
+export const DELETE = async(request) => {
+    try {
+        await DbConnection()    
+        const user = await GetUserData()
+        
+        if (!user){
+            return NextResponse.json(
+                { success: false, error: "UnAuthenticated please login !" },
+                { status: 400 }
+            );
+        }
+
+        const {_id} = await request.json();
+
+        const deleted = await Todo.findByIdAndDelete(_id)
+
+        if (!deleted){
+            return NextResponse.json(
+                { success: false, error: "Todo not deleted" },
+                { status: 400 }
+            );
+        }
+
+        return NextResponse.json({
+            success: true,
+            todo: deleted
+        })
+
+    }catch(error){
+        return NextResponse.json(
+            { success: false, error: error.message },
+            { status: 400 }
+        );
+    }
 }
