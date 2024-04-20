@@ -1,5 +1,5 @@
 import { DbConnection } from '../DbConnection/DbConnection'
-import { User } from '@/models/UserModel'
+import { User } from '../models/UserModel.js'
 import jwt from 'jsonwebtoken'
 import { cookies } from 'next/headers'
 

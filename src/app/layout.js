@@ -1,5 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Header from '../Components/Header'
+import {AuthContextProvider} from '../userContext/UserContext'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,10 +14,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-      <main className="font-mono font-bold text-xl min-w-full min-h-[100vh] flex items-start p-10 justify-center bg-gray-700 text-white">
+      <AuthContextProvider>
+      <Header styles={'bg-black px-2 flex justify-between font-bold items-center h-[50px] min-w-full '}/>
 
+      <main className="font-mono flex items-center justify-center font-bold text-xl  min-w-full min-h-[100vh]  bg-gray-700 text-white">
+       
         {children}
         </main>
+        <footer>footer</footer>
+        </AuthContextProvider>
+
         </body>
     </html>
   );
