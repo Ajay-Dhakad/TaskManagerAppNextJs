@@ -9,8 +9,6 @@ function NavLinks() {
     const router = useRouter()
     const {isAuthenticated,dispatch} = UseAuth()
 
-    console.log(isAuthenticated)
-
     const logoutHandler =async() => {
         const data = await fetch('/api/logout', {
             method: 'GET',
