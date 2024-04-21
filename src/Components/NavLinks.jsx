@@ -18,7 +18,7 @@ function NavLinks() {
                 'Content-Type': 'application/json'
             }
         })
-        
+            
        
 
         dispatch({type:'LOGOUT'})
