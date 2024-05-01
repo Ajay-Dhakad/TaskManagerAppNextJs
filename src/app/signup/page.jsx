@@ -1,7 +1,10 @@
 'use client'
 import React from 'react'
+import { useRouter } from 'next/navigation';
 
 function SignupPage() {
+
+  const router = useRouter()
 
   const handler = async (e) => {
     e.preventDefault();
@@ -19,7 +22,10 @@ function SignupPage() {
       body: JSON.stringify(userData),
     });
     const data = await response.json();
-    console.log(data);
+    console.log(data)
+    if (data.success){
+      router.push('/')
+    }
   }
 
   return (

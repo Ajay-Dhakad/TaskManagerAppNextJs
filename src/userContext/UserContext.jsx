@@ -1,7 +1,8 @@
 'use client'
 
-import { type } from "os"
 import { createContext,useContext,useEffect,useReducer, useState } from "react"
+import { usePathname } from "next/navigation"
+import { type } from "os"
 
 const UserContext = createContext()
 
@@ -18,7 +19,6 @@ const userReducer = (state,action) => {
 
         case 'LOGOUT':
             return {
-                ...state,
                 user: null,
                 isAuthenticated: false
             }
@@ -36,11 +36,15 @@ export const AuthContextProvider = ({children}) =>{
         user:null
     })
 
+    const pathname  = usePathname()
+    console.log(pathname)
+
     const [loading,setloading] = useState(true)
 
 
     useEffect(() => {
-        const userData = async() => {
+
+        if (!state.isAuthenticated){const userData = async() => {
             const user = await fetch('/api/me')
             
             const data = await user.json()
@@ -59,9 +63,13 @@ export const AuthContextProvider = ({children}) =>{
 
         }
     
-        userData()
+        userData()}
+
+        else{
+           return
+        }
        
-    },[])
+    },[pathname])
 
     return(
         <UserContext.Provider value={{...state,dispatch}}>

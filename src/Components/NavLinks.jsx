@@ -15,7 +15,7 @@ function NavLinks() {
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
+        })  
             
        
 
@@ -33,7 +33,7 @@ function NavLinks() {
      </li>
     { !isAuthenticated && <> <li>
        <Link href="/signup">Sign Up</Link>
-     </li>
+     </li>  
      <li>
        <Link href="/login">Login</Link>
      </li></>}
@@ -42,6 +42,9 @@ function NavLinks() {
         Logout
      </li>
      }
+     <li>
+       <Link href="/about">About</Link>
+     </li>
    </ul>
   )
 }
